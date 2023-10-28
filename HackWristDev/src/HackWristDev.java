@@ -4,5 +4,6 @@
 /**
  * 
  */
-module HackWristDev {
+class HackWristDev {
+	
 }
