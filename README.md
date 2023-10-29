@@ -9,12 +9,14 @@ The system utilizes the Arduino IDE (C++ language) to read data from the sensors
 ### Libraries and Packages
 **Arduino:** 
 - SparkFun_ISM330DHCX.h
-**Python**
+
+**Python:**
 - numpy
 - pandas
 - sklearn.model_selection
 - sklearn.linear_model
-**Java**
+
+**Java:**
 - java.io.*
 - javax.swing.*
 - java.util.*
