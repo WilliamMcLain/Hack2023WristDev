@@ -82,7 +82,7 @@ public class HackWristDev {
 		
 		JPanel subPatColumn = new JPanel(new GridLayout(3,1));
 		//Patient Summary Data
-		JLabel goodPoint = new JLabel("Test Good Point");
+		JLabel goodPoint = new JLabel("Points of Good Motion: ");
 		JLabel goodPointVal = new JLabel(Integer.toString(getCountGood()));
 			//goodPoint placeholder
 		JPanel subPatColumn1 = new JPanel(new GridLayout(1,2));
@@ -91,7 +91,7 @@ public class HackWristDev {
 		subPatColumn1.add(goodPointVal);
 		subPatColumn.add(subPatColumn1);
 		
-		JLabel badPoint = new JLabel("Test Bad Point");
+		JLabel badPoint = new JLabel("Points of Harmful Motion: ");
 		JLabel badPointVal = new JLabel(Integer.toString(getCountBadd()));
 			//goodPoint placeholder
 		
@@ -101,9 +101,9 @@ public class HackWristDev {
 		subPatColumn2.add(badPointVal);
 		subPatColumn.add(subPatColumn2);
 		
-		JLabel howBad = new JLabel("Test How Bad");
+		JLabel howBad = new JLabel("Ratio of Bad Wrist Motion: ");
 		//String cool = 20;
-		JLabel howBadVal = new JLabel(Integer.toString(getCountRatio()));
+		JLabel howBadVal = new JLabel(Float.toString(getCountRatio()));
 			//goodPoint placeholder
 		
 		
@@ -168,7 +168,7 @@ public class HackWristDev {
 		frame.add(panel, BorderLayout.CENTER);
 		//frame.add(panel2, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Title Placeholder");
+		frame.setTitle("Carpal Tunnel Rehabilitation Device");
 		
 		frame.setPreferredSize(new Dimension(800, 500));
 		frame.pack();
@@ -181,7 +181,7 @@ public class HackWristDev {
             public void actionPerformed(ActionEvent e) {
                 // Create a dialog to display raw data
                 JDialog dialog = new JDialog(frame, "Raw Data", true);
-                dialog.setSize(300, 200);
+                dialog.setSize(300, 600);
 
                 // Read and display the raw data
                 JTextArea rawDataTextArea = new JTextArea(10, 30);
@@ -248,8 +248,8 @@ public class HackWristDev {
                 dialog.add(new JScrollPane(accuracyDataTextArea));
 
                 
-                System.out.print("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"+accT);
-                JLabel labelRawData = new JLabel("The Accuracy Value:" + accT);
+                //System.out.print("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"+accT);
+                JLabel labelRawData = new JLabel("The Accuracy Value: " + accT);
                 dialog.add(labelRawData);
                 // Call your CSVReaderResults method to get the data
                 dialog.setVisible(true);
@@ -353,21 +353,17 @@ public class HackWristDev {
 		return getArr;
 	}
 	
-	public int getCountRatio() throws FileNotFoundException {
+	public float getCountRatio() throws FileNotFoundException {
 		String[] getArr = new String[20];
 		Scanner scan = new Scanner(new File("C:\\Users\\mclai\\Hack2023WristDev\\HackWristDev\\src\\CSV_Files\\Response.csv"));  
 		scan.useDelimiter(",");
-		int val = 0;
-		int i = 0;
+		float val = 0;
+		float i = getCountBadd() + getCountGood();
 		while (scan.hasNext()) {  
-			getArr[i] = scan.next();
-			i = i + 1;
-			if (getArr[i] != null && getArr[i].contains("bad")) {
+			if (scan.next().contains("bad")) {
 				val = val + 1;
 			}
 		}   
-		
-		
 		
 		scan.close(); 
 		return val/i;
@@ -380,9 +376,7 @@ public class HackWristDev {
 		int val = 0;
 		int i = 0;
 		while (scan.hasNext()) {  
-			getArr[i] = scan.next();
-			i = i + 1;
-			if (getArr[i] != null && getArr[i].contains("b")) {
+			if (scan.next().contains("b")) {
 				val = val + 1;
 			}
 		}   
@@ -400,11 +394,9 @@ public class HackWristDev {
 		int val = 0;
 		int i = 0;
 		while (scan.hasNext()) {  
-			getArr[i] = scan.next();
-			i = i + 1;
-			if (getArr[i] != null && getArr[i].contains("good")) {
+			if(scan.next().contains("g")) {
 				val = val + 1;
-				System.out.print(val);
+				//System.out.print(val);
 			}
 		}   
 		
