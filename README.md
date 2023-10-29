@@ -1,6 +1,6 @@
 # Hack2023WristDev
 
-Project Title
+## Project Title
 Simple overview of use/purpose.
 
 Description
