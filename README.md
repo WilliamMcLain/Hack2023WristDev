@@ -23,76 +23,16 @@ The system utilizes the Arduino IDE (C++ language) to read data from the sensors
 - java.awt.*
 
 ## Hardware Setup
-The IMU is powered by 3.3V and communicates with the Arduino through I2C by connecting the SDA and SCL. The IMU is placed in the center of the back of the hand, and is mounted to the glove to have it fixed in the appropriate position. The Arduino, along with its casing, is mounted on the forearm with a strap similar to a watch.
+The IMU is powered by 3.3V and communicates with the Arduino through I2C by connecting the SDA and SCL. The IMU is placed in the center of the back of the hand and is mounted to the glove to have it fixed in the appropriate position. The Arduino, along with its casing, is mounted on the forearm with a strap similar to a watch.
 
 ## How to run the program
-- The 
-code blocks for commands
-Help
-Any advise for common problems or issues.
+- The code is initialized by uploading and running the GyroData.ino code to the Arduino. (This only needs to be done once)
+- In Python, you can collect personalized data to train the model or use the already collected dataset. To collect personalized data, run the first block from BridgePython.ipynb. Make sure to have arduino_port updated based on the connected COM and select the desired number of samples.
+- Run either the already collected datasets, GoodData.csv and BadData.csv, or personalized data (must update csv filenames) to train the Machine Learning model by running the second block from BridgePython.ipynb.
+- Lastly, if the first block of BridgePython.ipynb was altered for personalized data collection, revert the filename from the first block of BridgePython.ipynb to "inputData" and run the first and then third block to generate the outputData.
+- Run the HackDevWrist class file as a Java Application to open the UI and use the software.
 
-command to run if program contains helper info
-Authors
 Contributors names and contact info
-
-ex. Dominique Pizzie
-ex. @DomPizzie
-
-Version History
-0.2
-Various bug fixes and optimizations
-See commit change or See release history
-0.1
-Initial Release
-License
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-Acknowledgments
-Inspiration, code snippets, etc.
-
-awesome-readme
-PurpleBooth
-dbader
-zenorocha
-fvcproductions
-
-# Project Title
-
-Getting Started
-Dependencies
-Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-ex. Windows 10
-Installing
-How/where to download your program
-Any modifications needed to be made to files/folders
-Executing program
-How to run the program
-Step-by-step bullets
-code blocks for commands
-Help
-Any advise for common problems or issues.
-
-command to run if program contains helper info
-Authors
-Contributors names and contact info
-
-ex. Dominique Pizzie
-ex. @DomPizzie
-
-Version History
-0.2
-Various bug fixes and optimizations
-See commit change or See release history
-0.1
-Initial Release
-License
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-Acknowledgments
-Inspiration, code snippets, etc.
-
-awesome-readme
-PurpleBooth
-dbader
-zenorocha
-fvcproductions
+- Hasan Dheyaa - hassan.dheyaa02@gmail.com
+- William McLain - mclaindwilliam@gmail.com
+- Tian Wang - mark.wang20020601@gmail.com
