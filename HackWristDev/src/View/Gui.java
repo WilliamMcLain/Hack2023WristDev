@@ -57,7 +57,7 @@ public class Gui {
 	  private static final String CREATE_TICKET_PANEL = "CreateTicketPanel";
 	  /** Ticket List panel - we only need one instance, so it's final. */
 	  
-	  anel = new JPanel();
+	  panel = new JPanel();
 	  cardLayout = new CardLayout();
 	  panel.setLayout(cardLayout);
 	  panel.add(pnlTicketList, TICKET_LIST_PANEL);
