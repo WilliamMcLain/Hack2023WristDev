@@ -83,27 +83,38 @@ public class HackWristDev {
 		JPanel subPatColumn = new JPanel(new GridLayout(3,1));
 		//Patient Summary Data
 		JLabel goodPoint = new JLabel("Test Good Point");
-		JLabel goodPointVal = new JLabel("Test Good Point");
+		JLabel goodPointVal = new JLabel(Integer.toString(getCountGood()));
 			//goodPoint placeholder
-		goodPointVal.setText(goodPointStr);
-		subPatColumn.add(goodPoint);
-		subPatColumn.add(goodPointVal);
+		JPanel subPatColumn1 = new JPanel(new GridLayout(1,2));
+		
+		subPatColumn1.add(goodPoint);
+		subPatColumn1.add(goodPointVal);
+		subPatColumn.add(subPatColumn1);
 		
 		JLabel badPoint = new JLabel("Test Bad Point");
-		JLabel badPointVal = new JLabel("Test Bad Point");
+		JLabel badPointVal = new JLabel(Integer.toString(getCountBadd()));
 			//goodPoint placeholder
-		badPointVal.setText(badPointStr);
-		subPatColumn.add(badPoint);
-		subPatColumn.add(badPointVal);
+		
+		JPanel subPatColumn2 = new JPanel(new GridLayout(1,2));
+		
+		subPatColumn2.add(badPoint);
+		subPatColumn2.add(badPointVal);
+		subPatColumn.add(subPatColumn2);
 		
 		JLabel howBad = new JLabel("Test How Bad");
-		JLabel howBadVal = new JLabel("Test How Bad");
+		//String cool = 20;
+		JLabel howBadVal = new JLabel(Integer.toString(getCountRatio()));
 			//goodPoint placeholder
-		howBadVal.setText(howBadStr);
-		subPatColumn.add(howBad);
-		subPatColumn.add(howBadVal);
+		
+		
+		JPanel subPatColumn3 = new JPanel(new GridLayout(1,2));
+		subPatColumn3.add(howBad);
+		subPatColumn3.add(howBadVal);
+		subPatColumn.add(subPatColumn3);
 		
 		//Add to sub panel row
+		
+		
 		subPanelRow.add(subPatColumn);
 		subPanelRow.add(subPanelColumn);
 		
@@ -268,7 +279,7 @@ public class HackWristDev {
 	}  
 	
 	/**
-	 * Read CSV file
+	 * Read CSV file from the trained false data values
 	 * 
 	 * @return a string that can be parsed for data
 	 * @throws Exception if cannot read file
@@ -340,6 +351,67 @@ public class HackWristDev {
 		}   
 		scan.close(); 
 		return getArr;
+	}
+	
+	public int getCountRatio() throws FileNotFoundException {
+		String[] getArr = new String[20];
+		Scanner scan = new Scanner(new File("C:\\Users\\mclai\\Hack2023WristDev\\HackWristDev\\src\\CSV_Files\\Response.csv"));  
+		scan.useDelimiter(",");
+		int val = 0;
+		int i = 0;
+		while (scan.hasNext()) {  
+			getArr[i] = scan.next();
+			i = i + 1;
+			if (getArr[i] != null && getArr[i].contains("bad")) {
+				val = val + 1;
+			}
+		}   
+		
+		
+		
+		scan.close(); 
+		return val/i;
+	}
+	
+	public int getCountBadd() throws FileNotFoundException {
+		String[] getArr = new String[20];
+		Scanner scan = new Scanner(new File("C:\\Users\\mclai\\Hack2023WristDev\\HackWristDev\\src\\CSV_Files\\Response.csv"));  
+		scan.useDelimiter(",");
+		int val = 0;
+		int i = 0;
+		while (scan.hasNext()) {  
+			getArr[i] = scan.next();
+			i = i + 1;
+			if (getArr[i] != null && getArr[i].contains("b")) {
+				val = val + 1;
+			}
+		}   
+		
+		
+		
+		scan.close(); 
+		return val;
+	}
+	
+	public int getCountGood() throws FileNotFoundException {
+		String[] getArr = new String[20];
+		Scanner scan = new Scanner(new File("C:\\Users\\mclai\\Hack2023WristDev\\HackWristDev\\src\\CSV_Files\\Response.csv"));  
+		scan.useDelimiter(",");
+		int val = 0;
+		int i = 0;
+		while (scan.hasNext()) {  
+			getArr[i] = scan.next();
+			i = i + 1;
+			if (getArr[i] != null && getArr[i].contains("good")) {
+				val = val + 1;
+				System.out.print(val);
+			}
+		}   
+		
+		
+		
+		scan.close(); 
+		return val;
 	}
 	
 	/**
