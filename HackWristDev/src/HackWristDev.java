@@ -163,6 +163,8 @@ public class HackWristDev {
 		frame.pack();
 		frame.setVisible(true);
 		
+		final String resRawBut = CSVReaderRaw();
+		
 		rawData.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e) {
@@ -175,16 +177,9 @@ public class HackWristDev {
                 rawDataTextArea.setEditable(false);
                 dialog.add(new JScrollPane(rawDataTextArea));
 
-                JLabel labelRawData = new JLabel("here");
+                JTextArea labelRawData = new JTextArea("here: " + resRawBut);
                 dialog.add(labelRawData);
                 // Call your CSVReaderResults method to get the data
-                try {
-                    String rawCSVData = CSVReaderResults();
-                    rawDataTextArea.setText(rawCSVData);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    rawDataTextArea.setText("Error reading data.");
-                }
 
                 dialog.setVisible(true);
             }
@@ -227,6 +222,8 @@ public class HackWristDev {
             }
         });
 		
+		final String accT = CSVReaderAccuracy();
+		
 		accuracyData.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e) {
@@ -239,23 +236,11 @@ public class HackWristDev {
                 accuracyDataTextArea.setEditable(false);
                 dialog.add(new JScrollPane(accuracyDataTextArea));
 
-                String acc = "";
-                try {
-					acc = acc + CSVReaderAccuracy();
-				} catch (Exception e1) {
-					System.out.print("oops");
-				}
-                JLabel labelRawData = new JLabel(acc);
+                
+                System.out.print("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"+accT);
+                JLabel labelRawData = new JLabel("The Accuracy Value:" + accT);
                 dialog.add(labelRawData);
                 // Call your CSVReaderResults method to get the data
-                try {
-                    String accuracyCSVData = CSVReaderResults();
-                    accuracyDataTextArea.setText(accuracyCSVData);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    accuracyDataTextArea.setText("Error reading data.");
-                }
-
                 dialog.setVisible(true);
             }
         });
@@ -283,6 +268,26 @@ public class HackWristDev {
 	}  
 	
 	/**
+	 * Read CSV file
+	 * 
+	 * @return a string that can be parsed for data
+	 * @throws Exception if cannot read file
+	 */
+	public String CSVBadReaderResults() throws Exception {
+	
+		String strOut = "";
+		
+	
+		Scanner scan = new Scanner(new File("C:\\Users\\mclai\\Hack2023WristDev\\HackWristDev\\src\\CSV_Files\\BadData.csv"));  
+		scan.useDelimiter(",");   
+		while (scan.hasNext()) {  
+			System.out.print(scan.next());  
+		}   
+		scan.close(); 
+		return strOut;
+	}  
+	
+	/**
 	 * Read CSV and return the accuracy
 	 * 
 	 * @return the accuracy of the machine
@@ -296,7 +301,7 @@ public class HackWristDev {
 			Scanner scan = new Scanner(new File("C:\\Users\\mclai\\Hack2023WristDev\\HackWristDev\\src\\CSV_Files\\Accuracy.csv"));  
 			scan.useDelimiter(",");  
 			while (scan.hasNext()) {  
-				System.out.print(scan.next());  
+				strOut = scan.next();  
 			}   
 			scan.close();  
 			return strOut;
@@ -313,10 +318,10 @@ public class HackWristDev {
 		String strOut = "";
 		
 		//PATH OF Results CSV OUT HERE
-		Scanner scan = new Scanner(new File("C:\\\\Users\\\\mclai\\\\Hack2023WristDev\\\\HackWristDev\\\\src\\\\CSV_Files\\\\ResponseData.csv"));  
+		Scanner scan = new Scanner(new File("C:\\\\Users\\\\mclai\\\\Hack2023WristDev\\\\HackWristDev\\\\src\\\\CSV_Files\\\\Response.csv"));  
 		scan.useDelimiter(",");  
 		while (scan.hasNext()) {  
-			strOut = strOut + scan.next(); 
+			strOut = strOut + "\r\n" + scan.next(); 
 			System.out.print(strOut);  
 		}   
 		scan.close();  
@@ -348,18 +353,19 @@ public class HackWristDev {
 	    try {
 	      pw = new PrintWriter(new File("clinician.csv"));
 
-	      StringBuffer csvHeader = new StringBuffer("");
 	      StringBuffer csvData = new StringBuffer("");
-	      csvHeader.append("Data");
-	      // write header
-	      pw.write(csvHeader.toString());
 
-	      String dataRaw = CSVReaderRaw();
-	      System.out.print(dataRaw);
+	      // write header
+	      
+	      String[] strArr = getStuff();
+	      for (int i = 0; i<strArr.length; i++) {
+	    	    csvData.append(strArr[i]);
+		      	pw.write(csvData.toString());
+	      }
 	      // write data
 	      
 	      //csvData.append();
-	      //pw.write(csvData.toString());
+	      
 	      
 	      pw.close();
 	    } catch (FileNotFoundException e) {
