@@ -1,10 +1,12 @@
 # Hack2023WristDev
-
-# Project Title
 Simple overview of use/purpose.
-
+This project is a imu enabled biosensor for carpal tunnel rehabilitaion. The code for this project allow the the imu to be able to run, the usage of the values gathered to train and test in a machine learning algorithm, and a UX for an interface.
 Description
 An in-depth paragraph about your project and overview of use.
+This project is intended for monitoring rehabilitation of carpal tunnel. Because of the risk of repetitive motions and speed at which the wrist is used, this project monitors the angular velocity and determines whether that is acceptable or not in the machine learning algoithm. This algorithm then displays on the UX. The languages used are C++ for the arduino, Python for the model, and Javascript for the UX.
+
+
+# Project Title
 
 Getting Started
 Dependencies
