@@ -8,25 +8,23 @@ This project is intended to monitor the rehabilitation process of carpal tunnel.
 The system utilizes the Arduino IDE (C++ language) to read data from the sensors, Python for preprocessing and machine-learning model, and Java for user interface and experience. The system is compatible with the following systems and above: Arduino IDE 2.2, Python 23.7, and Java 17.
 ### Libraries and Packages
 **Arduino:** 
--SparkFun_ISM330DHCX.h
+- SparkFun_ISM330DHCX.h
 **Python**
--numpy
--pandas
--sklearn.model_selection
--sklearn.linear_model
+- numpy
+- pandas
+- sklearn.model_selection
+- sklearn.linear_model
 **Java**
-java.io.*
-javax.swing.*
-java.util.*
-java.awt.*
+- java.io.*
+- javax.swing.*
+- java.util.*
+- java.awt.*
 
-ex. Windows 10
-Installing
-How/where to download your program
-Any modifications needed to be made to files/folders
-Executing program
-How to run the program
-Step-by-step bullets
+## Hardware Setup
+The IMU is powered by 3.3V and communicates with the Arduino through I2C by connecting the SDA and SCL. The IMU is placed in the center of the back of the hand, and is mounted to the glove to have it fixed in the appropriate position. The Arduino, along with its casing, is mounted on the forearm with a strap similar to a watch.
+
+## How to run the program
+- The 
 code blocks for commands
 Help
 Any advise for common problems or issues.
